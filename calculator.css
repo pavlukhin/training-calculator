@@ -116,9 +116,13 @@ input[type=text].rep-count-field {
     line-height: 10px;
 }
 
-.global-too-hard-container {
+.tuning-container {
     color: #fff;
     margin-top: 1em;
+}
+
+.tuning-container input[type=checkbox] {
+    margin-left: 1em;
 }
 
 .training-plan-title {

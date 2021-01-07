@@ -25,11 +25,10 @@ function generateCalculator(model, root, templates) {
 
     let updateWeekChooser = function() {
         chooseWeekElement.innerHTML = '';
-        let weekOpt;
         for (let i = 0; i < model.weeks.length; i++) {
             let week = model.weeks[i];
             if (week.monthId == chooseMonthElement.value) {
-                weekOpt = document.createElement('option');
+                let weekOpt = document.createElement('option');
                 weekOpt.innerHTML = week.weekName;
                 weekOpt.value = week.weekId;
                 chooseWeekElement.appendChild(weekOpt);
@@ -57,7 +56,7 @@ function generateCalculator(model, root, templates) {
         }
     };
 
-    let updateAll = function () {
+    let updateAll = function() {
         updateWeekChooser()
         updateTrainingWeek();
     };
@@ -97,31 +96,31 @@ function getMonthProps(monthId) {
 
 function generateTrainingWeek(model, root, templates, props) {
     root.innerHTML = '';
-    var tparams = {
-        dayInputId: 'calc_day_input',
-        userInputId: 'calc_user_input',
-        trainingPlanId: 'calc_training_plan'
-    };
-    var renderedWeek = Mustache.render(templates.weekTemplate, tparams);
-    root.innerHTML = renderedWeek;
 
     let chooseDayElement;
     if (model.days) {
-        chooseDayElement = layoutCalendarInput(document.getElementById(tparams.dayInputId), 'День');
-        var dayOpt;
-        for (var i = 0; i < model.days.length; i++) {
-            var dayModel = model.days[i];
-            dayOpt = document.createElement('option');
+        chooseDayElement = layoutCalendarInput(root, 'День');
+        for (let i = 0; i < model.days.length; i++) {
+            let dayModel = model.days[i];
+            let dayOpt = document.createElement('option');
             dayOpt.innerHTML = dayModel.name;
             dayOpt.value = dayModel.coeff;
             chooseDayElement.appendChild(dayOpt);
         }
         chooseDayElement.selectedIndex = props.get('dayId', 0);
     }
-    var userInput = document.getElementById(tparams.userInputId);
-    var trainingPlan = document.getElementById(tparams.trainingPlanId);
-    var repCntChangers = [];
-    let globalTooHardToggle = document.createElement('input');
+
+    let templateCont = document.createElement('div');
+    root.appendChild(templateCont);
+  
+    let renderedWeek = Mustache.render(templates.weekTemplate);
+    templateCont.innerHTML = renderedWeek;
+
+    let userInput = document.getElementById('calc-user-input');
+    let trainingPlan = document.getElementById('calc-training-plan');
+    let repCntChangers = [];
+    let globalTooHardObjs = createTuningWidgets(['Мне всё-равно тяжело']);
+    let globalTooHardToggle = globalTooHardObjs.toggles[0];
     for (let i = 0; i < model.exs.length; i++) {
         let ex = model.exs[i];
         let exMaxBlock = document.createElement('div');
@@ -143,13 +142,13 @@ function generateTrainingWeek(model, root, templates, props) {
         maxInput.value = props.get(ex.name, '');
         maxInput.classList.add('ex-max-input');
         maxInputCont.appendChild(maxInput);
-        var tooHardLabel = document.createElement('label');
-        tooHardLabel.innerHTML = 'Too hard';
-//        exMaxBlock.appendChild(tooHardLabel);
-        let tooHardToggle = document.createElement('input');
-        tooHardToggle.type = 'checkbox';
-        tooHardToggle.checked = props.get(ex.name + '_relax', "0") === "1";
-//        exMaxBlock.appendChild(tooHardToggle);
+
+        let tuningObjs = createTuningWidgets(['Мне всё-равно тяжело', 'Мне слишком легко']);
+//        userInput.appendChild(tuningObjs.container);
+        let tooHardToggle = tuningObjs.toggles[0];
+        let tooEasyToggle = tuningObjs.toggles[1];
+        // t0d0 proper user properties
+//        tooEasyToggle.checked = props.get(ex.name + '_harden', "0") === "1";
 
         if (i > 0) {
             let restExEl = document.createElement('div');
@@ -157,7 +156,7 @@ function generateTrainingWeek(model, root, templates, props) {
             trainingPlan.appendChild(restExEl);
         }
 
-        var exWork = document.createElement('div');
+        let exWork = document.createElement('div');
         exWork.classList.add('ex-work-container');
         trainingPlan.appendChild(exWork);
         lbl = document.createElement('div');
@@ -165,49 +164,56 @@ function generateTrainingWeek(model, root, templates, props) {
         lbl.innerText = exTitle;
         exWork.appendChild(lbl);
 
-        var repsData = [];
-        for (var j = 0; j < ex.repCoeffs.length; j++) {
+        let repsData = [];
+        for (let j = 0; j < ex.repCoeffs.length; j++) {
+            let restRepEl;
             if (j > 0) {
-                let restRepEl = document.createElement('div');
+                restRepEl = document.createElement('div');
                 restRepEl.innerHTML = templates.restRepTemplate;
                 exWork.appendChild(restRepEl);
             }
-            var repParams = {
-                repIdx: (j + 1),
-                repCntId: 'calc_rep_' + i + '_' + j
+            let repParams = {
+                repIdx: (j + 1)
             };
-            var repContainer = document.createElement('div');
+            let repContainer = document.createElement('div');
             exWork.appendChild(repContainer);
             repContainer.innerHTML = Mustache.render(templates.repTemplate, repParams);
-            repsData.push({
-                element: document.getElementById(repParams.repCntId),
+            let rd = {
+                element: repContainer.getElementsByClassName('rep-count-field')[0],
                 coeff: ex.repCoeffs[j],
                 unit: ex.unit
-            });
+            };
+            if (restRepEl) {
+              rd.restElement = restRepEl.getElementsByClassName('rest-rep-duration')[0];
+            }
+            repsData.push(rd);
         }
 
-        let changer = getInputChangeHandler(maxInput, globalTooHardToggle, chooseDayElement, ex.levels, repsData);
+        let changer = getInputChangeHandler(maxInput, globalTooHardToggle, null, chooseDayElement, ex.levels, repsData);
         maxInput.onchange = function() {
             changer();
             props.set(ex.name, maxInput.value);
         };
         tooHardToggle.onchange = function() {
+            if (tooHardToggle.checked) {
+                tooEasyToggle.checked = false;
+            }
             changer();
-            props.set(ex.name + '_relax', tooHardToggle.checked ? "1" : "0");
+            // t0d0 proper user properties
+//            props.set(ex.name + '_relax', tooHardToggle.checked ? "1" : "0");
         };
+        tooEasyToggle.onchange = function() {
+            if (tooEasyToggle.checked) {
+                tooHardToggle.checked = false;
+            }
+            changer();
+            // t0d0 proper user properties
+        }
         repCntChangers.push(changer);
     }
     let compositeChanger = composeChanger(repCntChangers);
 
-    let globalTooHardContainer = document.createElement('div');
-    globalTooHardContainer.align = 'right';
-    globalTooHardContainer.classList.add('global-too-hard-container');
-    userInput.appendChild(globalTooHardContainer);
-    globalTooHardToggle.type = 'checkbox';
-    globalTooHardContainer.appendChild(globalTooHardToggle);
-    let globalTooHardLabel = document.createElement('label');
-    globalTooHardLabel.innerText = 'Мне всё-равно тяжело';
-    globalTooHardContainer.appendChild(globalTooHardLabel);
+    userInput.appendChild(globalTooHardObjs.container);
     globalTooHardToggle.checked = props.get('global_relax', "0") === "1";
     globalTooHardToggle.onchange = function() {
         compositeChanger();
@@ -223,42 +229,75 @@ function generateTrainingWeek(model, root, templates, props) {
     compositeChanger();
 }
 
+function createTuningWidgets(labels) {
+    let tuningContainer = document.createElement('div');
+    tuningContainer.align = 'right';
+    tuningContainer.classList.add('tuning-container');
+    let toggles = [];
+    for (let i = 0; i < labels.length; i++) {
+        let tuningToggle = document.createElement('input');
+        toggles.push(tuningToggle);
+        tuningToggle.type = 'checkbox';
+        tuningContainer.appendChild(tuningToggle);
+        let tuningLabel = document.createElement('label');
+        tuningLabel.innerText = labels[i];
+        tuningContainer.appendChild(tuningLabel);
+    }
+    return {
+        toggles: toggles,
+        container: tuningContainer
+    };
+}
+
 function composeChanger(changers) {
     return function() {
-        for (var i = 0; i < changers.length; i++) {
+        for (let i = 0; i < changers.length; i++) {
             changers[i]();
         }
     };
 }
 
-function getInputChangeHandler(maxInput, tooHardToggle, chooseDayElement, levels, repsData) {
+function getInputChangeHandler(maxInput, tooHardToggle, tooEasyToggle, chooseDayElement, levels, repsData) {
     return function() {
         for (let i = 0; i < repsData.length; i++) {
             let rd = repsData[i];
             let dayCoeff = chooseDayElement ? chooseDayElement.value : 1;
-            let quant = calcReps(maxInput.value, tooHardToggle.checked, levels, rd.coeff, dayCoeff);
-            rd.element.value = quant + ' ' + rd.unit;
+            let tuningCoeff = 0;
+            if (tooHardToggle && tooHardToggle.checked) {
+                tuningCoeff = -1;
+            }
+            else if (tooEasyToggle && tooEasyToggle.checked) {
+                tuningCoeff = 1;
+            }
+            let x = calcRepsRest(maxInput.value, tuningCoeff, levels, rd.coeff, dayCoeff);
+            rd.element.value = x.reps + ' ' + rd.unit;
+            if (rd.restElement) {
+                rd.restElement.innerText = x.rest;
+            }
         }
     };
 }
 
-function calcReps(max, tooHard, levels, repCoeff, dayCoeff) {
-    var cnt = 0;
-    for (var i = 0; i < levels.length; i++) {
-        var lvl = levels[i];
+function calcRepsRest(max, tuningCoeff, levels, repCoeff, dayCoeff) {
+    let lvlcoeff = 0;
+    for (let i = 0; i < levels.length; i++) {
+        let lvl = levels[i];
         if (max < lvl.bound) {
             break;
         }
-        cnt = max * lvl.coeff;
+        lvlcoeff = lvl.coeff;
     }
-    var relaxCoeff = tooHard ? 0.9 : 1;
-    return Math.round(cnt * repCoeff * dayCoeff * relaxCoeff);
+    lvlcoeff = lvlcoeff + tuningCoeff * 0.1;
+    return {
+      reps: Math.round(max * lvlcoeff * repCoeff * dayCoeff),
+      rest: lvlcoeff > 1 ? 3 : 2
+    };
 }
 
 function userProperties(prefix) {
     return {
         get: function(key, dflt) {
-            var v = localStorage.getItem(prefix + key);
+            let v = localStorage.getItem(prefix + key);
             return v == null ? dflt : v;
         },
         set: function(key, value) {
