@@ -1,0 +1,925 @@
+{
+  "months": [
+    {
+      "monthId": 1,
+      "monthName": "Месяц 1"
+    },
+	      {
+      "monthId": 2,
+      "monthName": "Месяц 2"
+    } 
+  ],
+  "weeks": [
+    {
+      "weekId": 1,
+      "monthId": 1,
+      "weekName": "Неделя 1",
+	  "days": [
+        {
+          "name": "СР",
+          "coeff": 0.95
+        },
+        {
+          "name": "ПТ",
+          "coeff": 0.9
+        },
+        {
+          "name": "ВС",
+          "coeff": 1.05
+        }
+      ],
+      "exs": [
+        {
+          "name": "Открывашка с локтей",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+        {
+          "name": "Отжимания со слайдом",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 6,
+              "coeff": 0.8
+            },
+            {
+              "bound": 12,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Зашагивания на скамью",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 6,
+              "coeff": 0.8
+            },
+            {
+              "bound": 12,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Ассиметричная планка",
+          "unit": "сек",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 7,
+              "coeff": 0.8
+            },
+            {
+              "bound": 15,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Захождение на стену",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 7,
+              "coeff": 0.8
+            },
+            {
+              "bound": 15,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Приседания СУМО",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 10,
+              "coeff": 0.8
+            },
+            {
+              "bound": 20,
+              "coeff": 0.9
+            },
+            {
+              "bound": 30,
+              "coeff": 1
+            },
+			{
+              "bound": 40,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        }
+      ]
+    },
+    {
+      "weekId": 2,
+      "monthId": 1,
+      "weekName": "Неделя 2",
+	  "days": [
+        {
+          "name": "СР",
+          "coeff": 0.95
+        },
+        {
+          "name": "ПТ",
+          "coeff": 0.9
+        },
+        {
+          "name": "ВС",
+          "coeff": 1.05
+        }
+      ],
+      "exs": [
+        {
+          "name": "Шраги кругами",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 7,
+              "coeff": 0.8
+            },
+            {
+              "bound": 15,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+        {
+          "name": "Австралийские подтягивания",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 10,
+              "coeff": 0.8
+            },
+            {
+              "bound": 15,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Обратный наклонный крест",
+          "unit": "сек",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 25,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Тяги на бицепс",
+          "unit": "сек",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 8,
+              "coeff": 0.9
+            },
+            {
+              "bound": 12,
+              "coeff": 1
+            },
+			{
+              "bound": 15,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        }
+      ]
+    },
+	{
+      "weekId": 3,
+      "monthId": 1,
+      "weekName": "Неделя 3",
+	  "days": [
+        {
+          "name": "СР",
+          "coeff": 0.95
+        },
+        {
+          "name": "ПТ",
+          "coeff": 0.9
+        },
+        {
+          "name": "ВС",
+          "coeff": 1.05
+        }
+      ],
+      "exs": [
+        {
+          "name": "Приседания",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 10,
+              "coeff": 0.8
+            },
+            {
+              "bound": 15,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+        {
+          "name": "Отжимания на брусьях",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 25,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "«Сиси» приседания",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 8,
+              "coeff": 0.9
+            },
+            {
+              "bound": 12,
+              "coeff": 1
+            },
+			{
+              "bound": 15,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Открывашка с шагами",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 8,
+              "coeff": 0.9
+            },
+            {
+              "bound": 12,
+              "coeff": 1
+            },
+			{
+              "bound": 15,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Обратная планка на локтях",
+          "unit": "сек",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 25,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Печатная машинка",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 20,
+              "coeff": 1
+            },
+			{
+              "bound": 30,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        }
+      ]
+    },
+	{
+      "weekId": 4,
+      "monthId": 1,
+      "weekName": "Неделя 4",
+	  "days": [
+        {
+          "name": "СР",
+          "coeff": 0.95
+        },
+        {
+          "name": "ПТ",
+          "coeff": 0.9
+        },
+        {
+          "name": "ВС",
+          "coeff": 1.05
+        }
+      ],
+      "exs": [
+        {
+          "name": "Шраги австралийские",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 7,
+              "coeff": 0.8
+            },
+            {
+              "bound": 15,
+              "coeff": 0.9
+            },
+            {
+              "bound": 25,
+              "coeff": 1
+            },
+			{
+              "bound": 35,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+        {
+          "name": "Закручивание тела",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 25,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Тяги за голову",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 3,
+              "coeff": 0.8
+            },
+            {
+              "bound": 7,
+              "coeff": 0.9
+            },
+            {
+              "bound": 12,
+              "coeff": 1
+            },
+			{
+              "bound": 15,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Жим локтям",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 3,
+              "coeff": 0.8
+            },
+            {
+              "bound": 7,
+              "coeff": 0.9
+            },
+            {
+              "bound": 12,
+              "coeff": 1
+            },
+			{
+              "bound": 15,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Силовой мост",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 25,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        }
+      ]
+    },
+    {
+      "weekId": 5,
+      "monthId": 2,
+      "weekName": "Неделя 1",
+      "days": [
+        {
+          "name": "Пятница",
+          "coeff": 0.95
+        },
+        {
+          "name": "Воскресенье",
+          "coeff": 0.9
+        },
+        {
+          "name": "Понедельник",
+          "coeff": 1.05
+        }
+      ],
+      "exs": [
+        {
+          "name": "Подтягивания широким хватом",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 20,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Жим на стул одной рукой",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 25,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Тяги за голову прямыми руками",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 3,
+              "coeff": 0.8
+            },
+            {
+              "bound": 7,
+              "coeff": 0.9
+            },
+            {
+              "bound": 12,
+              "coeff": 1
+            },
+			{
+              "bound": 15,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Широкие глубокие отжимания",
+          "unit": "раз(а)",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 5,
+              "coeff": 0.8
+            },
+            {
+              "bound": 10,
+              "coeff": 0.9
+            },
+            {
+              "bound": 15,
+              "coeff": 1
+            },
+			{
+              "bound": 20,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        },
+		{
+          "name": "Статический вис нижним хватом",
+          "unit": "сек",
+          "levels": [
+			{
+              "bound": 0,
+              "coeff": 0.7
+            },
+            {
+              "bound": 10,
+              "coeff": 0.8
+            },
+            {
+              "bound": 20,
+              "coeff": 0.9
+            },
+            {
+              "bound": 30,
+              "coeff": 1
+            },
+			{
+              "bound": 40,
+              "coeff": 1.1
+            }
+          ],
+          "repCoeffs": [
+            0.8,
+            0.9,
+            0.7
+          ]
+        }
+      ]
+    }
+  ]
+}
